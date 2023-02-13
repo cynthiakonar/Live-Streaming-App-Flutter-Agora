@@ -1,7 +1,12 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
 import 'package:live_streaming/constants/colors.dart';
+import 'package:live_streaming/screens/streaming.dart';
+import 'package:live_streaming/screens/watch_live.dart';
+import 'package:live_streaming/widgets/dialogs/go_live.dart';
+import 'package:live_streaming/widgets/dialogs/watch_live.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -127,80 +132,88 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: 12,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return Container(
-                      height: (index % 3 + 3) * 50,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: primaryThemeColor
-                            .withOpacity((index % 3 + 1) * 0.1),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 2,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: primaryThemeColor,
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    "Live",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                  return GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const WatchLiveDialog(),
+                      );
+                    },
+                    child: Container(
+                        height: (index % 3 + 3) * 50,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: primaryThemeColor
+                              .withOpacity((index % 3 + 1) * 0.1),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 2,
                                   ),
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 7,
-                                  vertical: 2,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: primaryThemeColor.withOpacity(0.4),
-                                ),
-                                child: Row(
-                                  children: const [
-                                    Icon(
-                                      Icons.remove_red_eye_outlined,
-                                      color: Colors.white,
-                                      size: 18,
-                                    ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      "430",
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: primaryThemeColor,
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      "Live",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const Text(
-                            "Let's talk about the new iPhone 12",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 7,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: primaryThemeColor.withOpacity(0.4),
+                                  ),
+                                  child: Row(
+                                    children: const [
+                                      Icon(
+                                        Icons.remove_red_eye_outlined,
+                                        color: Colors.white,
+                                        size: 18,
+                                      ),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        "430",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ));
+                            const Text(
+                              "Let's talk about the new iPhone 12",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        )),
+                  );
                 },
               ),
             ),
@@ -224,7 +237,15 @@ class _HomeScreenState extends State<HomeScreen> {
         initialActiveIndex: 2,
         activeColor: Colors.white,
         color: Colors.white,
-        onTap: (index) {},
+        onTap: (index) {
+          if (index == 2) {
+            // ask for live stream permission
+            showDialog(
+              context: context,
+              builder: (context) => const GoLiveDialog(),
+            );
+          }
+        },
       ),
     );
   }
