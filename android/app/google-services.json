@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "74166236201",
+    "project_id": "live-streaming-agora",
+    "storage_bucket": "live-streaming-agora.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74166236201:android:df281b4e72506277c1d838",
+        "android_client_info": {
+          "package_name": "com.example.live_streaming"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74166236201-n6re7uinjpo6eqi3s8tbbpfrnca4tiev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy1Esngce-Isnj4IyClx-QCvkHehT8a-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74166236201-32ularhd2l5u1pio4as338pean1vfai6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
