@@ -1,15 +1,15 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get.dart';
-import 'package:live_streaming/constants/colors.dart';
-import 'package:live_streaming/screens/streaming.dart';
-import 'package:live_streaming/screens/watch_live.dart';
+
+import 'package:live_streaming/utils/colors.dart';
+import 'package:live_streaming/widgets/appbar.dart';
 import 'package:live_streaming/widgets/dialogs/go_live.dart';
 import 'package:live_streaming/widgets/dialogs/watch_live.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+  static const String routeName = "/home";
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     TabItem(
       icon: Image.asset(
         "assets/images/earth.png",
-        color: Colors.white,
+        color: secondaryThemeColor,
       ),
       title: "Discover",
     ),
@@ -64,27 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
-      appBar: AppBar(
-        backgroundColor: bgColor,
-        title: const Text(
-          "Now Streaming",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.asset("assets/images/live_logo_icon.jpg"),
-            ),
-          ),
-          const SizedBox(width: 20)
-        ],
-      ),
+      appBar: const CustomAppBar(title: "Now Streaming"),
       body: SafeArea(
         child: Column(
           children: [
@@ -111,7 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         tabs[index],
                         style: const TextStyle(
-                          color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
@@ -167,7 +146,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Text(
                                       "Live",
                                       style: TextStyle(
-                                        color: Colors.white,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -187,14 +165,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: const [
                                       Icon(
                                         Icons.remove_red_eye_outlined,
-                                        color: Colors.white,
                                         size: 18,
                                       ),
                                       SizedBox(width: 5),
                                       Text(
                                         "430",
                                         style: TextStyle(
-                                          color: Colors.white,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -206,10 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const Text(
                               "Let's talk about the new iPhone 12",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
+                              style: TextStyle(fontSize: 12),
                             ),
                           ],
                         )),
@@ -235,8 +208,8 @@ class _HomeScreenState extends State<HomeScreen> {
         style: TabStyle.fixedCircle,
         curveSize: 90,
         initialActiveIndex: 2,
-        activeColor: Colors.white,
-        color: Colors.white,
+        activeColor: secondaryThemeColor,
+        color: secondaryThemeColor,
         onTap: (index) {
           if (index == 2) {
             // ask for live stream permission

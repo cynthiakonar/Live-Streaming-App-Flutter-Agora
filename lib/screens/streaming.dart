@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:live_streaming/constants/colors.dart';
+import 'package:live_streaming/utils/colors.dart';
 import 'package:live_streaming/widgets/dialogs/end_live.dart';
 
 class StreamingScreen extends StatefulWidget {
   const StreamingScreen({super.key});
+  static const String routeName = "/streaming";
 
   @override
   State<StreamingScreen> createState() => _StreamingScreenState();
@@ -17,7 +17,6 @@ class _StreamingScreenState extends State<StreamingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // show image in background when camera off
-      backgroundColor: bgColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
@@ -59,7 +58,6 @@ class _StreamingScreenState extends State<StreamingScreen> {
                         child: Text(
                           "LIVE",
                           style: TextStyle(
-                            color: Colors.white,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
@@ -77,7 +75,6 @@ class _StreamingScreenState extends State<StreamingScreen> {
                   const Text(
                     "Cynthia Konar",
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
@@ -86,14 +83,14 @@ class _StreamingScreenState extends State<StreamingScreen> {
                     children: [
                       Icon(
                         Icons.remove_red_eye_outlined,
-                        color: Colors.white.withOpacity(0.6),
+                        color: secondaryThemeColor.withOpacity(0.6),
                         size: 18,
                       ),
                       const SizedBox(width: 5),
                       Text(
                         "400",
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.6),
+                          color: secondaryThemeColor.withOpacity(0.6),
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -125,7 +122,7 @@ class _StreamingScreenState extends State<StreamingScreen> {
                   child: Icon(
                     micOn ? Icons.mic_none : Icons.mic_off_outlined,
                     color: micOn
-                        ? Colors.white.withOpacity(0.8)
+                        ? secondaryThemeColor.withOpacity(0.8)
                         : primaryThemeColor.withOpacity(0.8),
                     size: 30,
                   ),
@@ -142,7 +139,7 @@ class _StreamingScreenState extends State<StreamingScreen> {
                         ? Icons.videocam_outlined
                         : Icons.videocam_off_outlined,
                     color: cameraOn
-                        ? Colors.white.withOpacity(0.8)
+                        ? secondaryThemeColor.withOpacity(0.8)
                         : primaryThemeColor.withOpacity(0.8),
                     size: 30,
                   ),
@@ -164,7 +161,6 @@ class _StreamingScreenState extends State<StreamingScreen> {
                     ),
                     child: const Icon(
                       Icons.call_end,
-                      color: Colors.white,
                       size: 30,
                     ),
                   ),
