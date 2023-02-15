@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:live_streaming/constants/colors.dart';
+import 'package:live_streaming/utils/colors.dart';
+import 'package:live_streaming/widgets/buttons/popup_dialog_button.dart';
 
 class EndLiveDialog extends StatelessWidget {
   const EndLiveDialog({super.key});
@@ -12,54 +13,29 @@ class EndLiveDialog extends StatelessWidget {
       title: const Text(
         "End Live",
         textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w600),
       ),
-      content: const Text(
-        "Are you sure you want to end the live?",
-        style: TextStyle(
-          color: Colors.white,
-        ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text("Are you sure you want to end the live?"),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: PopupDialogButton(
+                  title: "Confirm",
+                  onPressed: () => Get.close(3),
+                ),
+              ),
+              Expanded(
+                child: PopupDialogButton(
+                    title: "Cancel", onPressed: () => Get.back()),
+              )
+            ],
+          )
+        ],
       ),
-      actionsAlignment: MainAxisAlignment.center,
-      actions: [
-        TextButton(
-          onPressed: () => Get.close(3),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
-            ),
-            child: const Text(
-              "Yes",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-        TextButton(
-          onPressed: () => Get.back(),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
-            ),
-            child: const Text(
-              "No",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

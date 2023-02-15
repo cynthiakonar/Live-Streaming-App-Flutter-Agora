@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:live_streaming/constants/colors.dart';
+import 'package:live_streaming/utils/colors.dart';
 import 'package:live_streaming/screens/watch_live.dart';
+import 'package:live_streaming/widgets/buttons/popup_dialog_button.dart';
 
 class WatchLiveDialog extends StatelessWidget {
   const WatchLiveDialog({super.key});
@@ -13,56 +14,32 @@ class WatchLiveDialog extends StatelessWidget {
       title: const Text(
         "Watch Live",
         textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w600),
       ),
-      content: const Text(
-        "You will now watch user A's live stream. Do you wish to continue?",
-        style: TextStyle(
-          color: Colors.white,
-        ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text(
+              "You will now watch user A's live stream. Do you wish to continue?"),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: PopupDialogButton(
+                  title: "Continue",
+                  onPressed: () => Get.toNamed(WatchLiveScreen.routeName),
+                ),
+              ),
+              Expanded(
+                child: PopupDialogButton(
+                  title: "Cancel",
+                  onPressed: () => Get.back(),
+                ),
+              )
+            ],
+          )
+        ],
       ),
-      actionsAlignment: MainAxisAlignment.center,
-      actions: [
-        TextButton(
-          onPressed: () {
-            Get.to(() => const WatchLiveScreen());
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
-            ),
-            child: const Text(
-              "Continue",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-        TextButton(
-          onPressed: () => Get.back(),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
-            ),
-            child: const Text(
-              "Cancel",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:live_streaming/constants/colors.dart';
+import 'package:live_streaming/utils/colors.dart';
 
 class WatchLiveScreen extends StatefulWidget {
   const WatchLiveScreen({super.key});
+  static const String routeName = "/watch_live";
 
   @override
   State<WatchLiveScreen> createState() => _WatchLiveScreenState();
@@ -14,7 +15,6 @@ class _WatchLiveScreenState extends State<WatchLiveScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // show image in background when camera off
-      backgroundColor: bgColor,
       appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.transparent,
@@ -59,7 +59,6 @@ class _WatchLiveScreenState extends State<WatchLiveScreen> {
                               child: Text(
                                 "LIVE",
                                 style: TextStyle(
-                                  color: Colors.white,
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -77,7 +76,6 @@ class _WatchLiveScreenState extends State<WatchLiveScreen> {
                         const Text(
                           "Cynthia Konar",
                           style: TextStyle(
-                            color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -86,14 +84,14 @@ class _WatchLiveScreenState extends State<WatchLiveScreen> {
                           children: [
                             Icon(
                               Icons.remove_red_eye_outlined,
-                              color: Colors.white.withOpacity(0.6),
+                              color: secondaryThemeColor.withOpacity(0.6),
                               size: 18,
                             ),
                             const SizedBox(width: 5),
                             Text(
                               "400",
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.6),
+                                color: secondaryThemeColor.withOpacity(0.6),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),

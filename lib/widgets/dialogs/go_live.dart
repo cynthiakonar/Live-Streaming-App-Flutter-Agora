@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:live_streaming/constants/colors.dart';
+import 'package:live_streaming/utils/colors.dart';
 import 'package:live_streaming/screens/streaming.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:live_streaming/widgets/buttons/popup_dialog_button.dart';
+import 'package:live_streaming/widgets/custom_textfield.dart';
 
 class GoLiveDialog extends StatefulWidget {
   const GoLiveDialog({super.key});
@@ -26,6 +28,7 @@ class _GoLiveDialogState extends State<GoLiveDialog> {
   String? imageFilePath;
   bool isFileAdded = false;
   final itemEditingController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,58 +37,31 @@ class _GoLiveDialogState extends State<GoLiveDialog> {
       title: const Text(
         "Go Live",
         textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w600),
       ),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          TextFormField(
-            maxLength: 20,
-            style: const TextStyle(color: Colors.white),
-            decoration: InputDecoration(
-              isDense: true,
-              labelText: "Title",
-              labelStyle: const TextStyle(color: Colors.white),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.white),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.white),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.white),
-              ),
-            ),
-          ),
+          CustomTextField(controller: titleController),
           DropdownButtonFormField<String>(
             itemHeight: null,
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: "Poppins",
-            ),
             dropdownColor: primaryThemeColor,
             decoration: InputDecoration(
               labelText: "Tag",
-              labelStyle: const TextStyle(color: Colors.white),
+              labelStyle: const TextStyle(color: secondaryThemeColor),
               contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.white),
+                borderSide: const BorderSide(color: secondaryThemeColor),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.white),
+                borderSide: const BorderSide(color: secondaryThemeColor),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.white),
+                borderSide: const BorderSide(color: secondaryThemeColor),
               ),
             ),
             autofocus: false,
@@ -94,7 +70,7 @@ class _GoLiveDialogState extends State<GoLiveDialog> {
             iconSize: 28,
             icon: const Icon(
               Icons.keyboard_arrow_down,
-              color: Colors.white,
+              color: secondaryThemeColor,
             ),
             items: tags.map(buildMenuItem).toList(),
             onChanged: (evalue) => setState(
@@ -116,10 +92,7 @@ class _GoLiveDialogState extends State<GoLiveDialog> {
           const SizedBox(height: 12),
           const Text(
             'Cover Pic',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 13,
-            ),
+            style: TextStyle(fontSize: 13),
           ),
           const SizedBox(height: 4),
           isFileAdded
@@ -133,7 +106,7 @@ class _GoLiveDialogState extends State<GoLiveDialog> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6.0),
                       border: Border.all(
-                        color: Colors.white,
+                        color: secondaryThemeColor,
                         width: 1,
                       ),
                     ),
@@ -142,15 +115,11 @@ class _GoLiveDialogState extends State<GoLiveDialog> {
                       children: const [
                         Text(
                           'Image uploaded',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                          ),
+                          style: TextStyle(fontSize: 14),
                         ),
                         Icon(
                           Icons.close,
                           size: 20,
-                          color: Colors.white,
                         )
                       ],
                     ),
@@ -177,67 +146,37 @@ class _GoLiveDialogState extends State<GoLiveDialog> {
                     height: 45,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.white,
+                        color: secondaryThemeColor,
                         width: 1,
                       ),
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: const Center(
-                      child: Icon(
-                        Icons.upload_file_rounded,
-                        color: Colors.white,
-                      ),
+                      child: Icon(Icons.upload_file_rounded),
                     ),
                   ),
                 ),
           const SizedBox(height: 20),
-          const Text(
-            "Let's go live!",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
+          const Text("Let's go live!"),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: PopupDialogButton(
+                  title: "Start Live",
+                  onPressed: () => Get.toNamed(StreamingScreen.routeName),
+                ),
+              ),
+              Expanded(
+                child: PopupDialogButton(
+                  title: "Cancel",
+                  onPressed: () => Get.back(),
+                ),
+              )
+            ],
+          )
         ],
       ),
-      actionsAlignment: MainAxisAlignment.center,
-      actions: [
-        TextButton(
-          onPressed: () {
-            Get.to(() => const StreamingScreen());
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
-            ),
-            child: const Text(
-              "Start Live",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-        TextButton(
-          onPressed: () => Get.back(),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
-            ),
-            child: const Text(
-              "Cancel",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -245,7 +184,7 @@ class _GoLiveDialogState extends State<GoLiveDialog> {
       value: item,
       child: Text(
         item,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: 14,
         ),
