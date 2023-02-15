@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:live_streaming/controllers/setup_controller.dart';
 import 'package:live_streaming/screens/home.dart';
 import 'package:live_streaming/screens/login.dart';
 import 'package:live_streaming/screens/streaming.dart';
@@ -10,6 +11,8 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  final startup = Get.put(SetupController());
+  await startup.setup();
   runApp(const MyApp());
 }
 
@@ -18,6 +21,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SetupController setup = Get.find<SetupController>();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -46,7 +50,7 @@ class MyApp extends StatelessWidget {
         WatchLiveScreen.routeName: (context) => const WatchLiveScreen(),
         StreamingScreen.routeName: (context) => const StreamingScreen(),
       },
-      home: const LoginScreen(),
+      home: setup.route,
     );
   }
 }

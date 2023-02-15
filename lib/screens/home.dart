@@ -1,7 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import 'package:live_streaming/utils/colors.dart';
 import 'package:live_streaming/widgets/appbar.dart';
 import 'package:live_streaming/widgets/dialogs/go_live.dart';
@@ -16,6 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // To get user data:
+  // final user = FirebaseAuth.instance.currentUser;
+
   List tabs = [
     "Popular",
     "Trending",

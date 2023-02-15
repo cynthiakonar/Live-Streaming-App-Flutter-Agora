@@ -17,7 +17,7 @@ class SignupButton extends StatelessWidget {
               ),
             )
           : GestureDetector(
-              onTap: () => loginController.googleLogin(),
+              onTap: () => loginController.googleLogin(context),
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 14),
