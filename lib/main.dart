@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:live_streaming/controllers/setup_controller.dart';
 import 'package:live_streaming/screens/home.dart';
 import 'package:live_streaming/screens/login.dart';
-import 'package:live_streaming/screens/streaming.dart';
-import 'package:live_streaming/screens/watch_live.dart';
 import 'package:live_streaming/utils/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -47,8 +45,6 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.routeName: (context) => const LoginScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
-        WatchLiveScreen.routeName: (context) => const WatchLiveScreen(),
-        StreamingScreen.routeName: (context) => const StreamingScreen(),
       },
       home: setup.route,
     );

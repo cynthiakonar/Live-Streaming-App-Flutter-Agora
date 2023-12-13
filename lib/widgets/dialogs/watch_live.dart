@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:live_streaming/screens/streaming.dart';
 import 'package:live_streaming/utils/colors.dart';
-import 'package:live_streaming/screens/watch_live.dart';
 import 'package:live_streaming/widgets/buttons/popup_dialog_button.dart';
 
 class WatchLiveDialog extends StatelessWidget {
@@ -24,12 +24,15 @@ class WatchLiveDialog extends StatelessWidget {
           const SizedBox(height: 16),
           Row(
             children: [
-              Expanded(
-                child: PopupDialogButton(
-                  title: "Continue",
-                  onPressed: () => Get.toNamed(WatchLiveScreen.routeName),
-                ),
-              ),
+              // Expanded(
+              //   child: PopupDialogButton(
+              //     title: "Continue",
+              //     onPressed: () => Get.to(StreamingScreen(
+              //       isBroadcaster: false,
+              //       channelId: channelId,
+              //     )),
+              //   ),
+              // ),
               Expanded(
                 child: PopupDialogButton(
                   title: "Cancel",

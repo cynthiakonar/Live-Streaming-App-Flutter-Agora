@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:live_streaming/controllers/stream_controller.dart';
 import 'package:live_streaming/utils/colors.dart';
 import 'package:live_streaming/widgets/buttons/popup_dialog_button.dart';
 
 class EndLiveDialog extends StatelessWidget {
-  const EndLiveDialog({super.key});
+  const EndLiveDialog({super.key, required this.channelId});
+  final String channelId;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,8 @@ class EndLiveDialog extends StatelessWidget {
               Expanded(
                 child: PopupDialogButton(
                   title: "Confirm",
-                  onPressed: () => Get.close(3),
+                  onPressed: () async =>
+                      await StreamController().endLiveStream(channelId),
                 ),
               ),
               Expanded(

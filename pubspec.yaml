@@ -40,7 +40,8 @@ dependencies:
   google_sign_in: ^5.4.4
   cloud_firestore: ^4.4.0
   firebase_storage: ^11.0.11
-
+  agora_rtc_engine: ^5.0.1
+  permission_handler: ^10.2.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
